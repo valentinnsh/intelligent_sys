@@ -77,10 +77,9 @@ class Linreg_SGD(Linreg_Gradient):
 
 #AdaGrad
 class Linreg_AdaGrad(Linreg_SGD):
-    def __init__(self, n_sample=10, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.w = None
-        self.n_sample = n_sample
 
     def fit(self, X, y, lr=0.01, max_iter=100, eps = 1e-6):
         n, k = X.shape
@@ -90,7 +89,7 @@ class Linreg_AdaGrad(Linreg_SGD):
         
         X_train = np.hstack((X, np.ones((n, 1)))) if self.fit_intercept else X
         
-        gti = np.zeros(n)
+        gti = np.zeros(k + 1 if self.fit_intercept else k)
 
         self.losses = []
         
@@ -111,10 +110,9 @@ class Linreg_AdaGrad(Linreg_SGD):
 
 #RMSProp
 class Linreg_RMSProp(Linreg_SGD):
-    def __init__(self, n_sample=10, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.w = None
-        self.n_sample = n_sample
 
     def fit(self, X, y, lr=0.01, max_iter=100, beta = 0.6, eps = 1e-8):
         n, k = X.shape
@@ -124,7 +122,7 @@ class Linreg_RMSProp(Linreg_SGD):
         
         X_train = np.hstack((X, np.ones((n, 1)))) if self.fit_intercept else X
         
-        gti = np.zeros(n)
+        gti = np.zeros(k + 1 if self.fit_intercept else k)
 
         self.losses = []
         
@@ -144,10 +142,9 @@ class Linreg_RMSProp(Linreg_SGD):
 
 #Adam
 class Linreg_Adam(Linreg_SGD):
-    def __init__(self, n_sample=10, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.w = None
-        self.n_sample = n_sample
 
     def fit(self, X, y, lr=0.01, max_iter=100, beta1 = 0.9, beta2 = 0.99, eps = 1e-8):
         n, k = X.shape
@@ -157,8 +154,8 @@ class Linreg_Adam(Linreg_SGD):
         
         X_train = np.hstack((X, np.ones((n, 1)))) if self.fit_intercept else X
         
-        m_w = np.zeros(n)
-        v_w = np.zeros(n)
+        m_w = np.zeros(k + 1 if self.fit_intercept else k)
+        v_w = np.zeros(k + 1 if self.fit_intercept else k)
 
         self.losses = []
         

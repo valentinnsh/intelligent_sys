@@ -180,9 +180,31 @@ class matr(object):
         m = len(clc.rows)
         n = len(clc.rows[0])
 
-        a = matr(m,n)
-        # Тут раньше жил метод миноров
-        inverted = a
+        a = matr(m,n*2)
+
+        a.rows = [i+[0]*n for i in clc.rows]
+        for i in range(n):
+            a[i][n+i] = 1
+
+        #Applying Guass Jordan Elimination
+        for i in range(n):
+            if a[i][i] == 0.0:
+                sys.exit('Divide by zero detected!')
+
+            for j in range(n):
+                if i != j:
+                    ratio = a[j][i]/float(a[i][i])
+                    for k in range(2*n):
+                        a[j][k] = a[j][k] - ratio * a[i][k]
+        # Row operation to make principal diagonal element to 1
+        for i in range(n):
+            divisor = a[i][i]
+            for j in range(2*n):
+                a[i][j] = a[i][j]/float(divisor)
+
+
+        inverted = matr(m,n)
+        inverted.rows = [i[n:] for i in a.rows]
 
         return inverted
 

@@ -1,0 +1,42 @@
+#Data
+*.dat
+#Bup
+*~
+*\#*
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+#other
+gcc-arm-none-eabi-7-2018-q2-update/*
+nRF5_SDK_15.3.0_59ac345/*
+cc2540-sniffer/*

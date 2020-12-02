@@ -37,6 +37,7 @@
 *.app
 
 #other
+*.pyc
 gcc-arm-none-eabi-7-2018-q2-update/*
 nRF5_SDK_15.3.0_59ac345/*
 cc2540-sniffer/*

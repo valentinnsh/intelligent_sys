@@ -37,7 +37,7 @@ class matr(object):
         self.m, self.n = self.n, self.m
         self.rows = [list(item) for item in zip(*self.rows)]
 
-    def getTranspose(self):
+    def get_transpose(self):
         """ Return a transpose of the matrix without
         modifying the matrix itself """
 
@@ -47,7 +47,7 @@ class matr(object):
 
         return mat
 
-    def getRank(self):
+    def get_rank(self):
         return (self.m, self.n)
 
     def __eq__(self, mat):
@@ -104,7 +104,7 @@ class matr(object):
 
     # TODO - faster multiplication mabe?
     def __mul__(self, mat):
-        matm, matn = mat.getRank()
+        matm, matn = mat.get_rank()
         # Случай умножения на число
         if isinstance(mat, matr) == False:
             res = matr(self.m, self.n)
@@ -115,7 +115,7 @@ class matr(object):
 
             return res
         # Матрица на матрицу
-        tmpmat = mat.getTranspose()
+        tmpmat = mat.get_transpose()
         matmul = matr(self.m, matn)
 
         for x in range(self.m):
